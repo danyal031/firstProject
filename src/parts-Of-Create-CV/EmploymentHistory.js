@@ -1,14 +1,6 @@
-import {
-  Button,
-  Autocomplete,
-  Box,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Autocomplete, Box, Grid, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
-import { position } from "stylis";
 
 export function EmploymentHistory() {
   const months = [
@@ -26,36 +18,22 @@ export function EmploymentHistory() {
     { name: "اسفند", id: 12 },
   ];
   // initial states
-  // const [position, setPosition] = useState(null);
-  const [titleOfWorkplace, setTitleOfWorkplace] = useState(null);
-  const [firstMonth, setFirstMonth] = useState(null);
-  const [firstYear, setFirstYear] = useState(null);
-  const [lastMonth, setLastMonth] = useState(null);
-  const [lastYear, setLastYear] = useState(null);
+
   const [checked, setChecked] = useState(true);
   const [importEmploymentHistory, setImportEploymentHistory] = useState([]);
-  const [newState, setNewState] = useState([
-    {
-      position: "",
-      titleOfWorkplace: "",
-      firstMonth: "",
-      firstYear: "",
-      lastMonth: "",
-      lastYear: "",
-      checked: "",
-    },
-  ]);
-
-  // console.log(countState);
-  // console.log(position);
-  // console.log(titleOfWorkplace);
-  // console.log(firstMonth);
-  // console.log(firstYear);
-  // console.log(checked);
-  // console.log(lastMonth);
-  // console.log(lastYear);
+  const [numberState, setNumberState] = useState(0);
+  const [newState, setNewState] = useState([]);
 
   console.log(newState);
+  console.log(numberState);
+  //number:"numberState"
+  // checked: "";
+  // firstMonth: "";
+  // firstYear: "";
+  // lastMonth: "";
+  // lastYear: "";
+  // position: "";
+  // titleOfWorkplace: "";
 
   return (
     <>
@@ -102,18 +80,23 @@ export function EmploymentHistory() {
           </Typography>
           <Box
             onClick={() => {
-              setNewState(
-                newState.concat({
-                  position: "",
-                  titleOfWorkplace: "",
-                  firstMonth: "",
-                  firstYear: "",
-                  lastMonth: "",
-                  lastYear: "",
-                  checked: "",
-                })
-              );
+              setNumberState(numberState + 1);
 
+              setNewState((newState) => {
+                return [
+                  ...newState,
+                  {
+                    number: numberState + 1,
+                    position: "",
+                    titleOfWorkplace: "",
+                    firstMonth: "",
+                    firstYear: "",
+                    lastMonth: "",
+                    lastYear: "",
+                    checked: "",
+                  },
+                ];
+              });
               setImportEploymentHistory(
                 importEmploymentHistory.concat(
                   <Grid
@@ -131,24 +114,26 @@ export function EmploymentHistory() {
                       flexDirection: "row",
                       alignItems: "center",
                       marginTop: "10px",
-                      // backgroundColor: "aqua",
                     }}
                   >
                     <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
                       <TextField
                         sx={{ width: "100%" }}
                         label="سمت شغلی مربوطه"
-                        value={(newState.length - 1).position}
+                        value={
+                          newState.find((item) => {
+                            return item.number === numberState;
+                          })?.position
+                        }
                         onChange={(e) => {
-                          setNewState((newState) => {
-                            return newState.map((item, index) => {
-                              if (index === newState.length - 1) {
-                                return { ...item, position: e.target.value };
-                              } else {
-                                return item;
-                              }
-                            });
+                          const updatedState = newState.map((item) => {
+                            if (item.number) {
+                              return { ...item, position: e.target.value };
+                            } else {
+                              return item;
+                            }
                           });
+                          setNewState(updatedState);
                         }}
                       />
                     </Grid>
@@ -156,14 +141,8 @@ export function EmploymentHistory() {
                       <TextField
                         sx={{ width: "100%" }}
                         label="عنوان محل کار"
-                        value={newState[newState.length - 1].titleOfWorkplace}
-                        onChange={(e) => {
-                          newState[newState.length - 1].titleOfWorkplace =
-                            e.target.value;
-                          console.log(
-                            newState[newState.length - 1].titleOfWorkplace
-                          );
-                        }}
+                        value={null}
+                        onChange={(e) => {}}
                       />
                     </Grid>
                     <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
@@ -205,13 +184,8 @@ export function EmploymentHistory() {
                         <Autocomplete
                           sx={{ width: "40%" }}
                           disableClearable
-                          value={newState[newState.length - 1].firstMonth}
-                          onChange={(e, value) => {
-                            newState[newState.length - 1].firstMonth = value;
-                            console.log(
-                              newState[newState.length - 1].firstMonth
-                            );
-                          }}
+                          value={null}
+                          onChange={(e, value) => {}}
                           options={months.map((item) => {
                             return item.name;
                           })}
@@ -228,14 +202,8 @@ export function EmploymentHistory() {
                           sx={{ width: "40%" }}
                           variant="standard"
                           label="سال"
-                          value={newState[newState.length - 1].firstYear}
-                          onChange={(e) => {
-                            newState[newState.length - 1].firstYear =
-                              e.target.value;
-                            console.log(
-                              newState[newState.length - 1].firstYear
-                            );
-                          }}
+                          value={null}
+                          onChange={(e) => {}}
                         />
                       </Box>
                     </Grid>
@@ -253,11 +221,8 @@ export function EmploymentHistory() {
                           مشغول فعالیت در این مجموعه هستم
                         </Typography>
                         <Checkbox
-                          checked={newState[newState.length - 1].checked}
+                          checked={null}
                           onChange={(e) => {
-                            newState[newState.length - 1].checked =
-                              e.target.checked;
-                            console.log(newState[newState.length - 1].checked);
                             // if (e.target.checked === false) {
                             // setLastYear(null);
                             // setLastMonth(null);
@@ -305,13 +270,8 @@ export function EmploymentHistory() {
                           <Autocomplete
                             sx={{ width: "40%" }}
                             disableClearable
-                            value={newState[newState.length - 1].lastMonth}
-                            onChange={(e, value) => {
-                              newState[newState.length - 1].lastMonth = value;
-                              console.log(
-                                newState[newState.length - 1].lastMonth
-                              );
-                            }}
+                            value={null}
+                            onChange={(e, value) => {}}
                             options={months.map((item) => {
                               return item.name;
                             })}
@@ -328,14 +288,8 @@ export function EmploymentHistory() {
                             sx={{ width: "40%" }}
                             variant="standard"
                             label="سال"
-                            value={newState[newState.length - 1].lastYear}
-                            onChange={(e) => {
-                              newState[newState.length - 1].lastYear =
-                                e.target.value;
-                              console.log(
-                                newState[newState.length - 1].lastYear
-                              );
-                            }}
+                            value={null}
+                            onChange={(e) => {}}
                           />
                         </Box>
                       </Grid>
