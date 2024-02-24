@@ -26,7 +26,18 @@ export function EmploymentHistory() {
   ];
   // initial states
   const [numberState, setNumberState] = useState(1);
-  const [newState, setNewState] = useState([]);
+  const [newState, setNewState] = useState([
+    {
+      number: 0,
+      position: "",
+      titleOfWorkplace: "",
+      firstMonth: "",
+      firstYear: "",
+      lastMonth: "",
+      lastYear: "",
+      checked: "",
+    },
+  ]);
   return (
     <>
       <Box
@@ -345,32 +356,58 @@ export function EmploymentHistory() {
             </Grid>
           );
         })}
-        <Box
+
+        <Grid
+          container
+          spacing={2.5}
+          columns={12}
           sx={{
             backgroundColor: "#FFFFFF",
-            height: "80px",
-            width: "90%",
-            alignSelf: "center",
+            height: "85px",
             borderRadius: "8px",
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
-            padding: "10px 20px",
+            marginTop: "12px",
           }}
         >
-          <Typography sx={{ fontSize: "20px", fontWeight: "bold" }}>
-            سابقه شغلی خود را اضافه کنید
-          </Typography>
-          <Button
-            variant="contained"
-            color="warning"
-            sx={{ borderRadius: "1000px", fontSize: "15px" }}
-            onClick={handleOnClicke}
+          <Grid
+            xs={12}
+            sm={12}
+            md={12}
+            lg={12}
+            xl={12}
+            item
+            sx={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "end",
+              paddingBottom: "10px",
+              gap: "2px",
+            }}
           >
-            +
-          </Button>
-        </Box>
+            <Typography
+              sx={{
+                fontSize: "20px",
+                fontWeight: "bold",
+              }}
+            >
+              سابقه شغلی خود را اضافه کنید
+            </Typography>
+            <Button
+              variant="contained"
+              color="warning"
+              sx={{ borderRadius: "1000px", fontSize: "15px" }}
+              onClick={handleOnClicke}
+            >
+              +
+            </Button>
+          </Grid>
+        </Grid>
       </Box>
     </>
   );
