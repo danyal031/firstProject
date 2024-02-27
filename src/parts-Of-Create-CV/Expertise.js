@@ -7,8 +7,10 @@ import {
   Select,
   MenuItem,
   Button,
+  Checkbox,
 } from "@mui/material";
 import { useState } from "react";
+import { EmploymentHistory } from "./EmploymentHistory";
 
 export function Expertise() {
   const levels = [
@@ -23,6 +25,7 @@ export function Expertise() {
   const [level, setLevel] = useState(null);
   const [evidence, setEvidence] = useState(null);
   const [id, setId] = useState(1);
+  const [haveHistory, setHaveHistory] = useState(false);
   const [skills, setSkills] = useState([
     { skill: "", levelOfSkill: "", id: 0 },
   ]);
@@ -39,7 +42,6 @@ export function Expertise() {
           flexDirection: "column",
           alignItems: "start",
           justifyContent: "center",
-          gap: "7px",
         }}
       >
         {" "}
@@ -153,32 +155,10 @@ export function Expertise() {
                     flexDirection: "row",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "20px",
-                    position: "relative",
+                    gap: "10px",
                   }}
                 >
                   {" "}
-                  <Typography
-                    variant="p"
-                    sx={{
-                      position: "absolute",
-                      top: "-6px",
-                      left: "112px",
-                      fontSize: "12px",
-                      backgroundColor: "#FFFFFF",
-                      color: "#676767",
-                      height: "10px",
-                      paddingLeft: "6px",
-                      paddingRight: "6px",
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      zIndex: "100",
-                    }}
-                  >
-                    میزان تسلط
-                  </Typography>
                   <TextField
                     sx={{ width: "60%" }}
                     placeholder="مثلا: C#, Java"
@@ -242,7 +222,7 @@ export function Expertise() {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
-            marginTop: "12px",
+            marginTop: "8px",
           }}
         >
           <Grid
@@ -281,6 +261,48 @@ export function Expertise() {
             </Button>
           </Grid>
         </Grid>
+        <Grid
+          container
+          columns={12}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "start",
+            marginTop: "18px",
+          }}
+        >
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={3}
+            lg={3}
+            xl={3}
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "start",
+              gap: "10px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: "bold", fontSize: "24px" }}
+            >
+              دارای سابقه شغلی{" "}
+            </Typography>{" "}
+            <Checkbox
+              size="medium"
+              checked={haveHistory}
+              onChange={(e) => {
+                setHaveHistory(e.target.checked);
+              }}
+            />
+          </Grid>
+        </Grid>
+        {haveHistory === true ? <EmploymentHistory /> : null}
       </Box>
     </>
   );

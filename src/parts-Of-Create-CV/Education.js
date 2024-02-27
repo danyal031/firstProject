@@ -25,7 +25,7 @@ export function Education() {
           flexDirection: "column",
           alignItems: "start",
           justifyContent: "center",
-          gap: "40px",
+          gap: "23px",
         }}
       >
         {" "}

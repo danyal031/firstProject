@@ -42,25 +42,13 @@ export function EmploymentHistory() {
     <>
       <Box
         sx={{
-          paddingTop: 1,
-          paddingRight: 3,
-          paddingLeft: 5,
-          paddingBottom: 4,
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
           justifyContent: "center",
-          gap: "7px",
+          width: "100%",
         }}
       >
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: "bold",
-          }}
-        >
-          سوابق شغلی
-        </Typography>
         {newState.map((item) => {
           return (
             <Grid
@@ -77,7 +65,7 @@ export function EmploymentHistory() {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
-                marginTop: "10px",
+                marginTop: "7px",
                 position: "relative",
               }}
             >
@@ -369,7 +357,7 @@ export function EmploymentHistory() {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
-            marginTop: "12px",
+            marginTop: "8px",
           }}
         >
           <Grid
