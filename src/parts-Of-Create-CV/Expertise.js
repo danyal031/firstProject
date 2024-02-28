@@ -25,7 +25,7 @@ export function Expertise() {
   const [level, setLevel] = useState(null);
   const [evidence, setEvidence] = useState(null);
   const [id, setId] = useState(1);
-  const [haveHistory, setHaveHistory] = useState(false);
+  const [haveHistory, setHaveHistory] = useState(true);
   const [skills, setSkills] = useState([
     { skill: "", levelOfSkill: "", id: 0 },
   ]);
