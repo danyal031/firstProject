@@ -12,75 +12,91 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import { useEffect, useState } from "react";
 
-export function CreateCV() {
+export function CreateCV(props) {
   const pathName = useLocation().pathname;
   const navigate = useNavigate();
-  const [next, setNext] = useState(null);
-  const [befor, setBefor] = useState(null);
 
   return (
     <>
-      <Button
-        onClick={() => {
-          if (pathName === "/portfolio") {
-            navigate("/expertise");
-          } else if (pathName === "/expertise") {
-            navigate("/education");
-          } else if (pathName === "/education") {
-            navigate("/contact");
-          } else if (pathName === "/contact") {
-            navigate("/basic");
-          }
-        }}
-        className="next-befor"
-        sx={{
-          borderRadius: "200px",
-          width: "110px",
-          color: "black",
-          fontWeight: "bold",
-          position: "fixed",
-          right: 50,
-          bottom: 130,
-          zIndex: 1000,
-          height: "40px",
-        }}
-      >
-        <Link to={befor} style={{ color: "black", textDecoration: "none" }}>
-          {" "}
+      {pathName === "/portfolio" ? (
+        <Button
+          className="get-cv"
+          sx={{
+            borderRadius: "200px",
+            width: "110px",
+            color: "black",
+            fontWeight: "bold",
+            position: "fixed",
+            left: 50,
+            bottom: 180,
+            zIndex: 1000,
+            height: "40px",
+          }}
+        >
+          <Link style={{ color: "black", textDecoration: "none" }}>
+            دریافت رزومه
+          </Link>
+        </Button>
+      ) : null}
+      {pathName !== "/basic" ? (
+        <Button
+          onClick={() => {
+            if (pathName === "/portfolio") {
+              navigate("/expertise");
+            } else if (pathName === "/expertise") {
+              navigate("/education");
+            } else if (pathName === "/education") {
+              navigate("/contact");
+            } else if (pathName === "/contact") {
+              navigate("/basic");
+            }
+          }}
+          className="next-befor"
+          sx={{
+            borderRadius: "200px",
+            width: "110px",
+            color: "black",
+            fontWeight: "bold",
+            position: "fixed",
+            right: 50,
+            bottom: 130,
+            zIndex: 1000,
+            height: "40px",
+          }}
+        >
           مرحله قبل
-        </Link>
-      </Button>
-      <Button
-        onClick={() => {
-          if (pathName === "/basic") {
-            navigate("/contact");
-          } else if (pathName === "/contact") {
-            navigate("/education");
-          } else if (pathName === "/education") {
-            navigate("/expertise");
-          } else if (pathName === "/expertise") {
-            navigate("/portfolio");
-          }
-        }}
-        className="next-befor"
-        sx={{
-          borderRadius: "200px",
-          width: "110px",
-          color: "black",
-          fontWeight: "bold",
-          position: "fixed",
-          left: 50,
-          bottom: 130,
-          zIndex: 1000,
-          height: "40px",
-        }}
-      >
-        <Link to={next} style={{ color: "black", textDecoration: "none" }}>
+        </Button>
+      ) : null}
+      {pathName !== "/portfolio" ? (
+        <Button
+          onClick={() => {
+            if (pathName === "/basic") {
+              navigate("/contact");
+            } else if (pathName === "/contact") {
+              navigate("/education");
+            } else if (pathName === "/education") {
+              navigate("/expertise");
+            } else if (pathName === "/expertise") {
+              navigate("/portfolio");
+            }
+          }}
+          className="next-befor"
+          sx={{
+            borderRadius: "200px",
+            width: "110px",
+            color: "black",
+            fontWeight: "bold",
+            position: "fixed",
+            left: 50,
+            bottom: 130,
+            zIndex: 1000,
+            height: "40px",
+          }}
+        >
           مرحله بعد
-        </Link>
-      </Button>
+        </Button>
+      ) : null}
       <NavigationBar pathName={pathName} />
       <Box
         sx={{

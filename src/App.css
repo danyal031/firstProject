@@ -45,3 +45,19 @@ body {
     rgba(251, 148, 19, 1) 41%
   );
 }
+.get-cv {
+  background: rgb(4, 120, 87);
+  background: linear-gradient(
+    90deg,
+    rgba(4, 120, 87, 1) 41%,
+    rgba(252, 252, 252, 1) 100%
+  );
+}
+.get-cv:hover {
+  background: rgb(252, 252, 252);
+  background: linear-gradient(
+    90deg,
+    rgba(252, 252, 252, 1) 0%,
+    rgba(4, 120, 87, 1) 41%
+  );
+}
