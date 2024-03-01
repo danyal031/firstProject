@@ -13,6 +13,7 @@ import { useState } from "react";
 import { EmploymentHistory } from "./EmploymentHistory";
 
 export function Expertise() {
+
   const levels = [
     { level: "Junior", id: 1 },
     { level: "Mid-Level ", id: 2 },
@@ -29,19 +30,16 @@ export function Expertise() {
   const [skills, setSkills] = useState([
     { skill: "", levelOfSkill: "", id: 0 },
   ]);
-  console.log(skills);
   return (
     <>
       <Box
         sx={{
-          paddingTop: 1,
-          paddingRight: 3,
-          paddingLeft: 5,
-          paddingBottom: 4,
+          paddingLeft: 2.5,
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
           justifyContent: "center",
+          width: "100%",
         }}
       >
         {" "}

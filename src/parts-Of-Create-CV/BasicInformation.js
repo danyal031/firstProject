@@ -92,15 +92,13 @@ export function BasicInformation() {
     <>
       <Box
         sx={{
-          paddingTop: 3,
-          paddingRight: 3,
-          paddingLeft: 5,
-          paddingBottom: 3,
+          paddingLeft: 2.5,
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
           justifyContent: "center",
           gap: "23px",
+          width: "100%",
         }}
       >
         <Typography variant="h6" sx={{ fontWeight: "bold" }}>

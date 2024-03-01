@@ -12,15 +12,13 @@ export function ContactInformation() {
     <>
       <Box
         sx={{
-          paddingTop: 2,
-          paddingRight: 3,
-          paddingLeft: 5,
-          paddingBottom: 4,
+          paddingLeft: 3,
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
           justifyContent: "center",
           gap: "25px",
+          width: "100%",
         }}
       >
         <Typography variant="h6" sx={{ fontWeight: "bold" }}>

@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 
 export function Portfolio() {
+
   const months = [
     { name: "فروردین", id: 1 },
     { name: "اردیبهشت", id: 2 },
@@ -25,6 +26,7 @@ export function Portfolio() {
   ];
 
   // initial states
+  
   const [key, setKey] = useState(1);
   const [projects, setProjects] = useState([
     {
@@ -37,19 +39,17 @@ export function Portfolio() {
       description: "",
     },
   ]);
-  console.log(projects);
   return (
     <>
       <Box
         sx={{
-          paddingTop: 1,
-          paddingRight: 3,
-          paddingLeft: 5,
-          paddingBottom: 4,
+          paddingLeft: 2.5,
+
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
           justifyContent: "center",
+          width: "100%",
         }}
       >
         <Typography

@@ -17,15 +17,13 @@ export function Education() {
     <>
       <Box
         sx={{
-          paddingTop: 1,
-          paddingRight: 3,
-          paddingLeft: 5,
-          paddingBottom: 4,
+          paddingLeft: 2.5,
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
           justifyContent: "center",
           gap: "23px",
+          width: "100%",
         }}
       >
         {" "}
