@@ -5,6 +5,7 @@ import { Education } from "./parts-Of-Create-CV/Education";
 import { Expertise } from "./parts-Of-Create-CV/Expertise";
 import { NavigationBar } from "./parts-Of-Create-CV/NavigationBar";
 import { Portfolio } from "./parts-Of-Create-CV/Portfolio";
+import { CVComponent } from "./CVComponent";
 import {
   Link,
   Route,
@@ -12,92 +13,112 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import { useEffect } from "react";
 
 export function CreateCV(props) {
   const pathName = useLocation().pathname;
   const navigate = useNavigate();
-
+  useEffect(() => {
+    if (pathName === "/") {
+      navigate("/basic");
+    }
+  }, []);
   return (
     <>
-      {pathName === "/portfolio" ? (
-        <Button
-          className="get-cv"
-          sx={{
-            borderRadius: "200px",
-            width: "110px",
-            color: "black",
-            fontWeight: "bold",
-            position: "fixed",
-            left: 50,
-            bottom: 180,
-            zIndex: 1000,
-            height: "40px",
-          }}
-        >
-          <Link style={{ color: "black", textDecoration: "none" }}>
-            دریافت رزومه
-          </Link>
-        </Button>
-      ) : null}
-      {pathName !== "/basic" ? (
-        <Button
-          onClick={() => {
-            if (pathName === "/portfolio") {
-              navigate("/expertise");
-            } else if (pathName === "/expertise") {
-              navigate("/education");
-            } else if (pathName === "/education") {
-              navigate("/contact");
-            } else if (pathName === "/contact") {
-              navigate("/basic");
-            }
-          }}
-          className="next-befor"
-          sx={{
-            borderRadius: "200px",
-            width: "110px",
-            color: "black",
-            fontWeight: "bold",
-            position: "fixed",
-            right: 50,
-            bottom: 130,
-            zIndex: 1000,
-            height: "40px",
-          }}
-        >
-          مرحله قبل
-        </Button>
-      ) : null}
-      {pathName !== "/portfolio" ? (
-        <Button
-          onClick={() => {
-            if (pathName === "/basic") {
-              navigate("/contact");
-            } else if (pathName === "/contact") {
-              navigate("/education");
-            } else if (pathName === "/education") {
-              navigate("/expertise");
-            } else if (pathName === "/expertise") {
-              navigate("/portfolio");
-            }
-          }}
-          className="next-befor"
-          sx={{
-            borderRadius: "200px",
-            width: "110px",
-            color: "black",
-            fontWeight: "bold",
-            position: "fixed",
-            left: 50,
-            bottom: 130,
-            zIndex: 1000,
-            height: "40px",
-          }}
-        >
-          مرحله بعد
-        </Button>
-      ) : null}
-      <NavigationBar pathName={pathName} />
+      {pathName !== "/cv"
+        ? [
+            pathName !== "/basic" ? (
+              <Button
+                onClick={() => {
+                  if (pathName === "/portfolio") {
+                    navigate("/expertise");
+                  } else if (pathName === "/expertise") {
+                    navigate("/education");
+                  } else if (pathName === "/education") {
+                    navigate("/contact");
+                  } else if (pathName === "/contact") {
+                    navigate("/basic");
+                  }
+                }}
+                className="next-befor"
+                sx={{
+                  borderRadius: "200px",
+                  width: "110px",
+                  color: "black",
+                  fontWeight: "bold",
+                  position: "fixed",
+                  right: 50,
+                  bottom: 130,
+                  zIndex: 1000,
+                  height: "40px",
+                }}
+              >
+                مرحله قبل
+              </Button>
+            ) : (
+              ""
+            ),
+
+            pathName !== "/portfolio" ? (
+              <Button
+                onClick={() => {
+                  if (pathName === "/basic") {
+                    navigate("/contact");
+                  } else if (pathName === "/contact") {
+                    navigate("/education");
+                  } else if (pathName === "/education") {
+                    navigate("/expertise");
+                  } else if (pathName === "/expertise") {
+                    navigate("/portfolio");
+                  }
+                }}
+                className="next-befor"
+                sx={{
+                  borderRadius: "200px",
+                  width: "110px",
+                  color: "black",
+                  fontWeight: "bold",
+                  position: "fixed",
+                  left: 50,
+                  bottom: 130,
+                  zIndex: 1000,
+                  height: "40px",
+                }}
+              >
+                مرحله بعد
+              </Button>
+            ) : (
+              ""
+            ),
+
+            pathName === "/portfolio" ? (
+              <Button
+                onClick={() => {
+                  navigate("/cv");
+                }}
+                className="get-cv"
+                sx={{
+                  borderRadius: "200px",
+                  width: "110px",
+                  color: "black",
+                  fontWeight: "bold",
+                  position: "fixed",
+                  left: 50,
+                  bottom: 180,
+                  zIndex: 1000,
+                  height: "40px",
+                }}
+              >
+                دریافت رزومه
+              </Button>
+            ) : (
+              ""
+            ),
+
+            <NavigationBar pathName={pathName} />,
+          ]
+        : ""}
+
       <Box
         sx={{
           display: "flex",
@@ -119,6 +140,7 @@ export function CreateCV(props) {
             <Route path="/education" element={<Education />} />
             <Route path="/expertise" element={<Expertise />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/cv" element={<CVComponent />} />
           </Routes>
         </Box>
       </Box>

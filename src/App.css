@@ -61,3 +61,21 @@ body {
     rgba(4, 120, 87, 1) 41%
   );
 }
+
+.change-cv {
+  background: rgb(252, 252, 252);
+  background: linear-gradient(
+    90deg,
+    rgba(252, 252, 252, 1) 0%,
+    rgba(4, 104, 120, 1) 41%
+  );
+}
+
+.change-cv:hover {
+  background: rgb(4, 104, 120);
+  background: linear-gradient(
+    90deg,
+    rgba(4, 104, 120, 1) 41%,
+    rgba(252, 252, 252, 1) 100%
+  );
+}

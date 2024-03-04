@@ -1,9 +1,31 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, Button } from "@mui/material";
 import { mainAmber, mainGray, mainWhite } from "./custom/colors";
+import { useNavigate } from "react-router-dom";
 
 export const CVComponent = () => {
+  const navigate = useNavigate();
   return (
     <>
+      <Button
+        className="change-cv"
+        onClick={() => {
+          navigate("/basic");
+        }}
+        sx={{
+          borderRadius: "200px",
+          width: "110px",
+          color: "black",
+          fontWeight: "bold",
+          position: "fixed",
+          left: 50,
+          bottom: 180,
+          zIndex: 1000,
+          height: "40px",
+        }}
+      >
+        ویرایش رزومه
+      </Button>
+      ;
       <Box>
         <Grid container>
           <Grid item xl={4} lg={4} md={5} sm={12} xs={12}>

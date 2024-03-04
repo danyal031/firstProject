@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export function NavigationBar({ pathName }) {
@@ -36,7 +35,6 @@ export function NavigationBar({ pathName }) {
               transform: "none",
               top: "0px",
               right: "0px",
-              left: "0px",
             },
           }}
           className="navigation-shadow"
