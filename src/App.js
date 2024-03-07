@@ -12,6 +12,7 @@ function App() {
       {/* <Box padding={"32px 16px"}> */}
       <CreateCV />
       {/* </Box> */}
+      {/* <CVComponent /> */}
     </>
   );
 }

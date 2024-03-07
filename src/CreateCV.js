@@ -13,7 +13,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function CreateCV(props) {
   const pathName = useLocation().pathname;
@@ -23,6 +23,7 @@ export function CreateCV(props) {
       navigate("/basic");
     }
   }, []);
+
   return (
     <>
       {pathName !== "/cv"
@@ -117,8 +118,7 @@ export function CreateCV(props) {
 
             <NavigationBar pathName={pathName} />,
           ]
-        : ""}
-
+        : null}
       <Box
         sx={{
           display: "flex",
@@ -139,7 +139,7 @@ export function CreateCV(props) {
             <Route path="/contact" element={<ContactInformation />} />
             <Route path="/education" element={<Education />} />
             <Route path="/expertise" element={<Expertise />} />
-            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/portfolio" element={<Portfolio />} />{" "}
             <Route path="/cv" element={<CVComponent />} />
           </Routes>
         </Box>
