@@ -9,11 +9,10 @@ import {
   Button,
   Checkbox,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EmploymentHistory } from "./EmploymentHistory";
 
-export function Expertise() {
-
+export function Expertise({ setExpertiseInfo, setEmploymentInfo }) {
   const levels = [
     { level: "Junior", id: 1 },
     { level: "Mid-Level ", id: 2 },
@@ -30,6 +29,15 @@ export function Expertise() {
   const [skills, setSkills] = useState([
     { skill: "", levelOfSkill: "", id: 0 },
   ]);
+  useEffect(() => {
+    setExpertiseInfo({
+      expertise: expertise,
+      level: level,
+      evidence: evidence,
+      haveHistory: haveHistory,
+      skills: skills,
+    });
+  }, [expertise, level, evidence, id, haveHistory, skills, setExpertiseInfo]);
   return (
     <>
       <Box
@@ -300,7 +308,9 @@ export function Expertise() {
             />
           </Grid>
         </Grid>
-        {haveHistory === true ? <EmploymentHistory /> : null}
+        {haveHistory === true ? (
+          <EmploymentHistory setEmploymentInfo={setEmploymentInfo} />
+        ) : null}
       </Box>
     </>
   );

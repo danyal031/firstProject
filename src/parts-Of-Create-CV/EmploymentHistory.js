@@ -6,10 +6,10 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 
-export function EmploymentHistory() {
+export function EmploymentHistory({ setEmploymentInfo }) {
   const months = [
     { name: "فروردین", id: 1 },
     { name: "اردیبهشت", id: 2 },
@@ -38,6 +38,10 @@ export function EmploymentHistory() {
       checked: "",
     },
   ]);
+
+  useEffect(() => {
+    setEmploymentInfo(newState);
+  }, [numberState, newState, setEmploymentInfo]);
   return (
     <>
       <Box

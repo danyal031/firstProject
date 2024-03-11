@@ -1,6 +1,7 @@
 import { Box, Grid, Typography, Button, Avatar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import SvgIcon from "@mui/material/SvgIcon";
+import { SignalWifiStatusbarNull } from "@mui/icons-material";
 function HomeIcon(props) {
   return (
     <SvgIcon {...props}>
@@ -8,7 +9,14 @@ function HomeIcon(props) {
     </SvgIcon>
   );
 }
-export const CVComponent = () => {
+export const CVComponent = ({
+  basicInfo,
+  contactInfo,
+  educationInfo,
+  expertiseInfo,
+  employmentInfo,
+  portfolioInfo,
+}) => {
   const navigate = useNavigate();
   return (
     <>
@@ -35,7 +43,7 @@ export const CVComponent = () => {
         className="container"
         sx={{ width: "100%", backgroundColor: "#F5F5F5", paddingTop: 5 }}
       >
-        <Grid container columns={12} spacing={2}>
+        <Grid container columns={12} spacing={0}>
           <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
             <Box
               sx={{
@@ -62,7 +70,7 @@ export const CVComponent = () => {
               >
                 <Avatar
                   alt=""
-                  src="../assets\images/photo.jpg"
+                  src={basicInfo.profile}
                   sx={{
                     width: "100px",
                     height: "100px",
@@ -82,10 +90,7 @@ export const CVComponent = () => {
                     variant="p"
                     sx={{ fontWeight: "bold", fontSize: "26px" }}
                   >
-                    دانیال هوشنگی
-                  </Typography>
-                  <Typography variant="p" sx={{ fontSize: "20px" }}>
-                    برنامه نویس وب
+                    {basicInfo.name}{" "}
                   </Typography>
                 </Box>
               </Box>
@@ -146,12 +151,22 @@ export const CVComponent = () => {
                   }}
                 >
                   <HomeIcon color="success" />
-                  <Typography variant="p">
-                    ghghhghhhhhhhhhhhhhhhhhh
-                    {/* khjkkhhhggggggggggggggglllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
-                    llllllllllllllllggggggg
-                    gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhhf
-                    fffffffff */}
+                  <Typography variant="p" sx={{ textAlign: "justify" }}>
+                    جنسیت: {basicInfo.gender}
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "start",
+                    gap: "10px",
+                  }}
+                >
+                  <HomeIcon color="success" />
+                  <Typography variant="p" sx={{ textAlign: "justify" }}>
+                    وضعیت تاهل: {basicInfo.marital}
                   </Typography>
                 </Box>
                 <Box
@@ -164,7 +179,10 @@ export const CVComponent = () => {
                   }}
                 >
                   <HomeIcon color="success" />{" "}
-                  <Typography variant="p">kjhkhjjjjjjjjjjjj</Typography>
+                  <Typography variant="p" sx={{ textAlign: "justify" }}>
+                    تاریخ تولد : {basicInfo.day} / {basicInfo.month} /
+                    {basicInfo.year}
+                  </Typography>
                 </Box>
                 <Box
                   sx={{
@@ -176,44 +194,26 @@ export const CVComponent = () => {
                   }}
                 >
                   <HomeIcon color="success" />{" "}
-                  <Typography variant="p">tertertttttttttt</Typography>
+                  <Typography variant="p" sx={{ textAlign: "justify" }}>
+                    تابعیت : {basicInfo.citizen}
+                  </Typography>
                 </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "start",
-                    gap: "10px",
-                  }}
-                >
-                  <HomeIcon color="success" />{" "}
-                  <Typography variant="p">gggggggggggggggggree</Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "start",
-                    gap: "10px",
-                  }}
-                >
-                  <HomeIcon color="success" />{" "}
-                  <Typography variant="p">dfgdfgffffffffff</Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "start",
-                    gap: "10px",
-                  }}
-                >
-                  <HomeIcon color="success" />{" "}
-                  <Typography variant="p">675675675677777777</Typography>
-                </Box>{" "}
+                {basicInfo.country ? (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "start",
+                      gap: "10px",
+                    }}
+                  >
+                    <HomeIcon color="success" />
+                    <Typography variant="p" sx={{ textAlign: "justify" }}>
+                      نام کشور : {basicInfo.country}
+                    </Typography>
+                  </Box>
+                ) : null}
               </Box>
               <Box
                 sx={{
@@ -273,7 +273,9 @@ export const CVComponent = () => {
                   }}
                 >
                   <HomeIcon color="success" />
-                  <Typography variant="p">khjkkhhhhhhffffffffff</Typography>
+                  <Typography variant="p" sx={{ textAlign: "justify" }}>
+                    آدرس ایمیل : {contactInfo.email}
+                  </Typography>
                 </Box>{" "}
                 <Box
                   sx={{
@@ -285,7 +287,9 @@ export const CVComponent = () => {
                   }}
                 >
                   <HomeIcon color="success" />
-                  <Typography variant="p">khjkkhhhhhhffffffffff</Typography>
+                  <Typography variant="p" sx={{ textAlign: "justify" }}>
+                    شماره موبایل : {contactInfo.phoneNumber}
+                  </Typography>
                 </Box>{" "}
                 <Box
                   sx={{
@@ -297,7 +301,9 @@ export const CVComponent = () => {
                   }}
                 >
                   <HomeIcon color="success" />
-                  <Typography variant="p">khjkkhhhhhhffffffffff</Typography>
+                  <Typography variant="p" sx={{ textAlign: "justify" }}>
+                    شماره ثابت : {contactInfo.landlineNumber}
+                  </Typography>
                 </Box>{" "}
                 <Box
                   sx={{
@@ -309,7 +315,23 @@ export const CVComponent = () => {
                   }}
                 >
                   <HomeIcon color="success" />
-                  <Typography variant="p">khjkkhhhhhhffffffffff</Typography>
+                  <Typography variant="p" sx={{ textAlign: "justify" }}>
+                    شهر سکونت : {contactInfo.city}
+                  </Typography>
+                </Box>{" "}
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "start",
+                    justifyContent: "start",
+                    gap: "10px",
+                  }}
+                >
+                  <HomeIcon color="success" />
+                  <Typography variant="p" sx={{ textAlign: "justify" }}>
+                    آدرس محل سکونت : {contactInfo.address}
+                  </Typography>
                 </Box>
               </Box>{" "}
               <Box
@@ -360,14 +382,15 @@ export const CVComponent = () => {
                 }}
               >
                 {" "}
-                <Typography variant="p">dfgdfggggggggggg</Typography>
-                <Typography variant="p">
-                  675675675fffffffffffffff677777777
+                <Typography variant="p" sx={{ textAlign: "justify" }}>
+                  مدرک تحصیلی : {educationInfo.degree}{" "}
                 </Typography>
-                <Typography variant="p">
-                  67567567567ssssssstertert7777777
+                <Typography variant="p" sx={{ textAlign: "justify" }}>
+                  رشته تحصیلی : {educationInfo.major}
                 </Typography>
-                <Typography variant="p">675675675yyyyyyyy677777777</Typography>
+                <Typography variant="p" sx={{ textAlign: "justify" }}>
+                  وضعیت تحصیلی : درحال تحصیل {educationInfo.studying}
+                </Typography>
               </Box>
             </Box>
           </Grid>
@@ -434,109 +457,131 @@ export const CVComponent = () => {
                 }}
               >
                 {" "}
-                <Typography variant="p">dfgdfggggggggggg</Typography>
-                <Typography variant="p">
-                  675675675fffffffffffffff677777777
+                <Typography variant="p" sx={{ textAlign: "justify" }}>
+                  حوزه ی تخصص : {expertiseInfo.expertise}
                 </Typography>
-                <Typography variant="p">
-                  67567567567ssssssstertert7777777
+                <Typography variant="p" sx={{ textAlign: "justify" }}>
+                  سطح ارشدیت : {expertiseInfo.level}
                 </Typography>
-                <Typography variant="p">675675675yyyyyyyy677777777</Typography>
+                {expertiseInfo.evidence ? (
+                  <Typography variant="p" sx={{ textAlign: "justify" }}>
+                    مدرک های اخذ شده : {expertiseInfo.evidence}
+                  </Typography>
+                ) : null}
+                {expertiseInfo.skills ? (
+                  expertiseInfo.skills.map((item) => {
+                    return (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "start",
+                          justifyContent: "center",
+                          gap: "6px",
+                          marginTop: "17px",
+                        }}
+                      >
+                        <Typography variant="p" sx={{ textAlign: "justify" }}>
+                          نام مهارت : {item.skill}
+                        </Typography>
+                        <Typography variant="p" sx={{ textAlign: "justify" }}>
+                          میزان تسلط: {item.levelOfSkill}
+                        </Typography>
+                      </Box>
+                    );
+                  })
+                ) : (
+                  <Typography
+                    variant="p"
+                    sx={{ marginTop: "15px", fontWeight: "bold" }}
+                  >
+                    هیچ مهارتی وجود ندارد.
+                  </Typography>
+                )}
               </Box>
-              <Box
-                className="jobs"
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                  width: "100%",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "20px",
-                    backgroundColor: "#1e40af",
-                  }}
-                ></Box>
-                <Typography
-                  variant="p"
-                  sx={{
-                    color: "#1e40af",
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                  }}
-                >
-                  سوابق شغلی{" "}
-                </Typography>
-                <Box
-                  sx={{
-                    height: "2px",
-                    flexGrow: 1,
-                    backgroundColor: "#1e40af",
-                  }}
-                ></Box>
-              </Box>
-              <Box
-                className="jobs-item"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "start",
-                  justifyContent: "center",
-                  width: "100%",
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "start",
-                    justifyContent: "center",
-                    width: "100%",
-                    gap: "10px",
-                    marginBottom: "40px",
-                  }}
-                >
-                  {" "}
-                  <Typography variant="p">dfgdfggggggggggg</Typography>
-                  <Typography variant="p">
-                    675675675fffffffffffffff677777777
-                  </Typography>
-                  <Typography variant="p">
-                    67567567567ssssssstertert7777777
-                  </Typography>
-                  <Typography variant="p">
-                    675675675yyyyyyyy677777777
-                  </Typography>
-                </Box>{" "}
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "start",
-                    justifyContent: "center",
-                    width: "100%",
-                    gap: "10px",
-                    marginBottom: "40px",
-                  }}
-                >
-                  {" "}
-                  <Typography variant="p">dfgdfggggggggggg</Typography>
-                  <Typography variant="p">
-                    675675675fffffffffffffff677777777
-                  </Typography>
-                  <Typography variant="p">
-                    67567567567ssssssstertert7777777
-                  </Typography>
-                  <Typography variant="p">
-                    675675675yyyyyyyy677777777
-                  </Typography>
-                </Box>
-              </Box>{" "}
+              {expertiseInfo.haveHistory === true
+                ? employmentInfo.map((item) => {
+                    return (
+                      <>
+                        <Box
+                          className="jobs"
+                          sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "8px",
+                            width: "100%",
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              width: "20px",
+                              height: "20px",
+                              borderRadius: "20px",
+                              backgroundColor: "#1e40af",
+                            }}
+                          ></Box>
+                          <Typography
+                            variant="p"
+                            sx={{
+                              color: "#1e40af",
+                              fontWeight: "bold",
+                              fontSize: "20px",
+                            }}
+                          >
+                            سوابق شغلی{" "}
+                          </Typography>
+                          <Box
+                            sx={{
+                              height: "2px",
+                              flexGrow: 1,
+                              backgroundColor: "#1e40af",
+                            }}
+                          ></Box>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "start",
+                            justifyContent: "center",
+                            width: "100%",
+                            gap: "10px",
+                            marginBottom: "40px",
+                          }}
+                        >
+                          {" "}
+                          <Typography variant="p" sx={{ textAlign: "justify" }}>
+                            سمت شغلی مربوطه : {item.position}
+                          </Typography>
+                          <Typography variant="p" sx={{ textAlign: "justify" }}>
+                            عنوان محل کار : {item.titleOfWorkplace}
+                          </Typography>
+                          <Typography variant="p" sx={{ textAlign: "justify" }}>
+                            تاریخ شروع به کار : {item.firstMonth} /{" "}
+                            {item.firstYear}
+                          </Typography>
+                          <Typography variant="p" sx={{ textAlign: "justify" }}>
+                            وضعیت شغلی : مشغول فعالیت در این مجموعه{" "}
+                            {item.checked === true ? "هستم" : "نیستم"}
+                          </Typography>
+                          {item.checked !== true ? (
+                            <Typography
+                              variant="p"
+                              sx={{ textAlign: "justify" }}
+                            >
+                              تاریخ اتمام کار : {item.lastMonth} /{" "}
+                              {item.lastYear}
+                            </Typography>
+                          ) : (
+                            ""
+                          )}
+                        </Box>{" "}
+                      </>
+                    );
+                  })
+                : null}
               <Box
                 className="project"
                 sx={{
@@ -573,65 +618,41 @@ export const CVComponent = () => {
                     backgroundColor: "#1e40af",
                   }}
                 ></Box>
-              </Box>
-              <Box
-                className="project-item"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "start",
-                  justifyContent: "center",
-                  width: "100%",
-                }}
-              >
-                {" "}
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "start",
-                    justifyContent: "center",
-                    width: "100%",
-                    gap: "10px",
-                    marginBottom: "40px",
-                  }}
-                >
-                  {" "}
-                  <Typography variant="p">dfgdfggggggggggg</Typography>
-                  <Typography variant="p">
-                    675675675fffffffffffffff677777777
-                  </Typography>
-                  <Typography variant="p">
-                    67567567567ssssssstertert7777777
-                  </Typography>
-                  <Typography variant="p">
-                    675675675yyyyyyyy677777777
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "start",
-                    justifyContent: "center",
-                    width: "100%",
-                    gap: "10px",
-                    marginBottom: "40px",
-                  }}
-                >
-                  {" "}
-                  <Typography variant="p">dfgdfggggggggggg</Typography>
-                  <Typography variant="p">
-                    675675675fffffffffffffff677777777
-                  </Typography>
-                  <Typography variant="p">
-                    67567567567ssssssstertert7777777
-                  </Typography>
-                  <Typography variant="p">
-                    675675675yyyyyyyy677777777
-                  </Typography>
-                </Box>
-              </Box>
+              </Box>{" "}
+              {portfolioInfo.map((item) => {
+                return (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "start",
+                      justifyContent: "center",
+                      width: "100%",
+                      gap: "10px",
+                      marginBottom: "40px",
+                    }}
+                  >
+                    {" "}
+                    <Typography variant="p" sx={{ textAlign: "justify" }}>
+                      عنوان پروژه : {item.title}{" "}
+                    </Typography>
+                    <Typography variant="p" sx={{ textAlign: "justify" }}>
+                      کارفرما/درخواست کننده : {item.applicator}{" "}
+                    </Typography>
+                    <Typography variant="p" sx={{ textAlign: "justify" }}>
+                      تاریخ دریافت پروژه : {item.month} / {item.year}
+                    </Typography>
+                    <Typography variant="p" sx={{ textAlign: "justify" }}>
+                      لینک مرتبط : {item.projectLink}
+                    </Typography>
+                    {item.description ? (
+                      <Typography variant="p" sx={{ textAlign: "justify" }}>
+                        توضیحات مربوطه : {item.description}
+                      </Typography>
+                    ) : null}
+                  </Box>
+                );
+              })}
             </Box>
           </Grid>
         </Grid>

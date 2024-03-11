@@ -12,7 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import { DatePicker, LocalizationProvider, faIR } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-export function BasicInformation() {
+export function BasicInformation({ setBasicInfo }) {
   const days = [
     { numberOfDay: "1", id: 1 },
     { numberOfDay: "2", id: 2 },
@@ -75,13 +75,39 @@ export function BasicInformation() {
     }).text
   );
   const [country, setCountry] = useState(null);
-  const [gender, setGender] = useState("male");
-  const [marital, setMarital] = useState("single");
+  const [gender, setGender] = useState("مرد");
+  const [marital, setMarital] = useState("مجرد");
   const [selectDate, setSelectDate] = useState(null);
   const [profile, setProfile] = useState(null);
   const [day, setDay] = useState(null);
   const [month, setMonth] = useState(null);
   const [year, setYear] = useState(null);
+
+  useEffect(() => {
+    setBasicInfo({
+      name: name,
+      citizen: citizen,
+      country: country,
+      gender: gender,
+      marital: marital,
+      profile: profile,
+      day: day,
+      month: month,
+      year: year,
+    });
+  }, [
+    name,
+    citizen,
+    country,
+    gender,
+    marital,
+    profile,
+    day,
+    month,
+    year,
+    setBasicInfo,
+  ]);
+
   // handle reset country
   //چرا کار نمیکنه
   // useEffect(() => {
@@ -209,7 +235,7 @@ export function BasicInformation() {
                       backgroundColor: "#e7e5e4",
                       borderRadius: "10px",
                     }}
-                    value={"male"}
+                    value={"مرد"}
                   >
                     مرد
                   </ToggleButton>
@@ -229,7 +255,7 @@ export function BasicInformation() {
                       backgroundColor: "#e7e5e4",
                       borderRadius: "10px",
                     }}
-                    value={"female"}
+                    value={"زن"}
                   >
                     زن
                   </ToggleButton>
@@ -357,7 +383,7 @@ export function BasicInformation() {
                       backgroundColor: "#e7e5e4",
                       borderRadius: "10px",
                     }}
-                    value={"single"}
+                    value={"مجرد"}
                   >
                     مجرد
                   </ToggleButton>
@@ -378,7 +404,7 @@ export function BasicInformation() {
                       backgroundColor: "#e7e5e4",
                       borderRadius: "10px",
                     }}
-                    value={"married"}
+                    value={"متاهل"}
                   >
                     متاهل
                   </ToggleButton>

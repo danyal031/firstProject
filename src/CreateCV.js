@@ -6,13 +6,7 @@ import { Expertise } from "./parts-Of-Create-CV/Expertise";
 import { NavigationBar } from "./parts-Of-Create-CV/NavigationBar";
 import { Portfolio } from "./parts-Of-Create-CV/Portfolio";
 import { CVComponent } from "./CVComponent";
-import {
-  Link,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export function CreateCV(props) {
@@ -23,6 +17,13 @@ export function CreateCV(props) {
       navigate("/basic");
     }
   }, []);
+  // State for the different parts of a cv.
+  const [basicInfo, setBasicInfo] = useState({});
+  const [contactInfo, setContactInfo] = useState({});
+  const [educationInfo, setEducationInfo] = useState({});
+  const [expertiseInfo, setExpertiseInfo] = useState({});
+  const [employmentInfo, setEmploymentInfo] = useState([]);
+  const [portfolioInfo, setPortfolioInfo] = useState([]);
 
   return (
     <>
@@ -135,12 +136,44 @@ export function CreateCV(props) {
           }}
         >
           <Routes>
-            <Route path="/basic" element={<BasicInformation />} />
-            <Route path="/contact" element={<ContactInformation />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/expertise" element={<Expertise />} />
-            <Route path="/portfolio" element={<Portfolio />} />{" "}
-            <Route path="/cv" element={<CVComponent />} />
+            <Route
+              path="/basic"
+              element={<BasicInformation setBasicInfo={setBasicInfo} />}
+            />
+            <Route
+              path="/contact"
+              element={<ContactInformation setContactInfo={setContactInfo} />}
+            />
+            <Route
+              path="/education"
+              element={<Education setEducationInfo={setEducationInfo} />}
+            />
+            <Route
+              path="/expertise"
+              element={
+                <Expertise
+                  setExpertiseInfo={setExpertiseInfo}
+                  setEmploymentInfo={setEmploymentInfo}
+                />
+              }
+            />
+            <Route
+              path="/portfolio"
+              element={<Portfolio setPortfolioInfo={setPortfolioInfo} />}
+            />{" "}
+            <Route
+              path="/cv"
+              element={
+                <CVComponent
+                  basicInfo={basicInfo}
+                  contactInfo={contactInfo}
+                  educationInfo={educationInfo}
+                  expertiseInfo={expertiseInfo}
+                  employmentInfo={employmentInfo}
+                  portfolioInfo={portfolioInfo}
+                />
+              }
+            />
           </Routes>
         </Box>
       </Box>

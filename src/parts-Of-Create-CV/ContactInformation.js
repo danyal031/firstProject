@@ -1,13 +1,22 @@
 import { Box, Grid, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export function ContactInformation() {
+export function ContactInformation({ setContactInfo }) {
   // initial states
   const [email, setEmail] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [landlineNumber, setLandlineNumber] = useState(null);
   const [city, setCity] = useState(null);
   const [address, setAddress] = useState(null);
+  useEffect(() => {
+    setContactInfo({
+      email: email,
+      phoneNumber: phoneNumber,
+      landlineNumber: landlineNumber,
+      city: city,
+      address: address,
+    });
+  }, [email, phoneNumber, landlineNumber, city, address, setContactInfo]);
   return (
     <>
       <Box

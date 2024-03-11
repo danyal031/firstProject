@@ -6,13 +6,16 @@ import {
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export function Education() {
+export function Education({ setEducationInfo }) {
   // initial states
   const [degree, setDegree] = useState(null);
   const [major, setMajor] = useState(null);
   const [studying, setStudying] = useState(null);
+  useEffect(() => {
+    setEducationInfo({ degree: degree, major: major, studying: studying });
+  }, [degree, major, studying, setEducationInfo]);
   return (
     <>
       <Box
@@ -98,7 +101,7 @@ export function Education() {
                     fontSize: "20px",
                     fontWeight: "bold",
                   }}
-                  value={"is"}
+                  value={"هستم"}
                 >
                   هستم
                 </ToggleButton>
@@ -119,7 +122,7 @@ export function Education() {
                     fontSize: "20px",
                     fontWeight: "bold",
                   }}
-                  value={"isnt"}
+                  value={"نیستم"}
                 >
                   نیستم
                 </ToggleButton>

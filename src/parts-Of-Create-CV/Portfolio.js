@@ -6,10 +6,9 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export function Portfolio() {
-
+export function Portfolio({ setPortfolioInfo }) {
   const months = [
     { name: "فروردین", id: 1 },
     { name: "اردیبهشت", id: 2 },
@@ -26,7 +25,7 @@ export function Portfolio() {
   ];
 
   // initial states
-  
+
   const [key, setKey] = useState(1);
   const [projects, setProjects] = useState([
     {
@@ -39,6 +38,10 @@ export function Portfolio() {
       description: "",
     },
   ]);
+
+  useEffect(() => {
+    setPortfolioInfo(projects);
+  }, [projects, key, setPortfolioInfo]);
   return (
     <>
       <Box
