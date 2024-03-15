@@ -9,117 +9,186 @@ import { CVComponent } from "./CVComponent";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export function CreateCV(props) {
-  const pathName = useLocation().pathname;
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (pathName === "/") {
-      navigate("/basic");
-    }
-  }, []);
-  // State for the different parts of a cv.
+export function CreateCV() {
+  // state for the different data for  each part of the cv.
   const [basicInfo, setBasicInfo] = useState({});
   const [contactInfo, setContactInfo] = useState({});
   const [educationInfo, setEducationInfo] = useState({});
   const [expertiseInfo, setExpertiseInfo] = useState({});
   const [employmentInfo, setEmploymentInfo] = useState([]);
   const [portfolioInfo, setPortfolioInfo] = useState([]);
+  // State for the different parts of a cv.
+  const [basic, setBasic] = useState(
+    <BasicInformation setBasicInfo={setBasicInfo} />
+  );
+  const [contact, setContact] = useState(null);
+  const [education, setEducation] = useState(null);
+  const [expertise, setExpertise] = useState(null);
+  const [portfolio, setPortfolio] = useState(null);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [showCV, setShowCV] = useState(false);
+  const [showNextButton, setShowNextButton] = useState(true);
+  const [showBeforButton, setShowBeforButton] = useState(true);
 
   return (
     <>
-      {pathName !== "/cv"
-        ? [
-            pathName !== "/basic" ? (
-              <Button
-                onClick={() => {
-                  if (pathName === "/portfolio") {
-                    navigate("/expertise");
-                  } else if (pathName === "/expertise") {
-                    navigate("/education");
-                  } else if (pathName === "/education") {
-                    navigate("/contact");
-                  } else if (pathName === "/contact") {
-                    navigate("/basic");
-                  }
-                }}
-                className="next-befor"
-                sx={{
-                  borderRadius: "200px",
-                  width: "110px",
-                  color: "black",
-                  fontWeight: "bold",
-                  position: "fixed",
-                  right: 50,
-                  bottom: 130,
-                  zIndex: 1000,
-                  height: "40px",
-                }}
-              >
-                مرحله قبل
-              </Button>
-            ) : (
-              ""
-            ),
-
-            pathName !== "/portfolio" ? (
-              <Button
-                onClick={() => {
-                  if (pathName === "/basic") {
-                    navigate("/contact");
-                  } else if (pathName === "/contact") {
-                    navigate("/education");
-                  } else if (pathName === "/education") {
-                    navigate("/expertise");
-                  } else if (pathName === "/expertise") {
-                    navigate("/portfolio");
-                  }
-                }}
-                className="next-befor"
-                sx={{
-                  borderRadius: "200px",
-                  width: "110px",
-                  color: "black",
-                  fontWeight: "bold",
-                  position: "fixed",
-                  left: 50,
-                  bottom: 130,
-                  zIndex: 1000,
-                  height: "40px",
-                }}
-              >
-                مرحله بعد
-              </Button>
-            ) : (
-              ""
-            ),
-
-            pathName === "/portfolio" ? (
-              <Button
-                onClick={() => {
-                  navigate("/cv");
-                }}
-                className="get-cv"
-                sx={{
-                  borderRadius: "200px",
-                  width: "110px",
-                  color: "black",
-                  fontWeight: "bold",
-                  position: "fixed",
-                  left: 50,
-                  bottom: 180,
-                  zIndex: 1000,
-                  height: "40px",
-                }}
-              >
-                دریافت رزومه
-              </Button>
-            ) : (
-              ""
-            ),
-
-            <NavigationBar pathName={pathName} />,
-          ]
-        : null}
+      {showNextButton === true ? (
+        portfolio ? null : (
+          <Button
+            onClick={() => {
+              if (basic) {
+                setBasic(null);
+                setContact(
+                  <ContactInformation setContactInfo={setContactInfo} />
+                );
+                setEducation(null);
+                setExpertise(null);
+                setPortfolio(null);
+              } else if (contact) {
+                setBasic(null);
+                setContact(null);
+                setEducation(<Education setEducationInfo={setEducationInfo} />);
+                setExpertise(null);
+                setPortfolio(null);
+              } else if (education) {
+                setBasic(null);
+                setContact(null);
+                setEducation(null);
+                setExpertise(
+                  <Expertise
+                    setExpertiseInfo={setExpertiseInfo}
+                    setEmploymentInfo={setEmploymentInfo}
+                  />
+                );
+                setPortfolio(null);
+              } else if (expertise) {
+                setBasic(null);
+                setContact(null);
+                setEducation(null);
+                setExpertise(null);
+                setPortfolio(<Portfolio setPortfolioInfo={setPortfolioInfo} />);
+              }
+            }}
+            className="next-befor"
+            sx={{
+              borderRadius: "200px",
+              width: "110px",
+              color: "black",
+              fontWeight: "bold",
+              position: "fixed",
+              left: 50,
+              bottom: 130,
+              zIndex: 1000,
+              height: "40px",
+            }}
+          >
+            مرحله بعد
+          </Button>
+        )
+      ) : null}
+      {showBeforButton === true ? (
+        basic ? null : (
+          <Button
+            onClick={() => {
+              if (portfolio) {
+                setBasic(null);
+                setContact(null);
+                setEducation(null);
+                setExpertise(
+                  <Expertise
+                    setExpertiseInfo={setExpertiseInfo}
+                    setEmploymentInfo={setEmploymentInfo}
+                  />
+                );
+                setPortfolio(null);
+              } else if (expertise) {
+                setBasic(null);
+                setContact(null);
+                setEducation(<Education setEducationInfo={setEducationInfo} />);
+                setExpertise(null);
+                setPortfolio(null);
+              } else if (education) {
+                setBasic(null);
+                setContact(
+                  <ContactInformation setContactInfo={setContactInfo} />
+                );
+                setEducation(null);
+                setExpertise(null);
+                setPortfolio(null);
+              } else if (contact) {
+                setBasic(<BasicInformation setBasicInfo={setBasicInfo} />);
+                setContact(null);
+                setEducation(null);
+                setExpertise(null);
+                setPortfolio(null);
+              }
+            }}
+            className="next-befor"
+            sx={{
+              borderRadius: "200px",
+              width: "110px",
+              color: "black",
+              fontWeight: "bold",
+              position: "fixed",
+              right: 50,
+              bottom: 130,
+              zIndex: 1000,
+              height: "40px",
+            }}
+          >
+            مرحله قبل
+          </Button>
+        )
+      ) : null}{" "}
+      {portfolio ? (
+        <Button
+          onClick={() => {
+            setShowCV(true);
+            setShowNavbar(false);
+            setShowBeforButton(false);
+            setShowNextButton(false);
+            setBasic(null);
+            setContact(null);
+            setEducation(null);
+            setExpertise(null);
+            setPortfolio(null);
+          }}
+          className="get-cv"
+          sx={{
+            borderRadius: "200px",
+            width: "110px",
+            color: "black",
+            fontWeight: "bold",
+            position: "fixed",
+            left: 50,
+            bottom: 180,
+            zIndex: 1000,
+            height: "40px",
+          }}
+        >
+          دریافت رزومه
+        </Button>
+      ) : null}
+      {showNavbar === true ? (
+        <NavigationBar
+          setBasic={setBasic}
+          setContact={setContact}
+          setEducation={setEducation}
+          setExpertise={setExpertise}
+          setPortfolio={setPortfolio}
+          basic={basic}
+          contact={contact}
+          education={education}
+          expertise={expertise}
+          portfolio={portfolio}
+          setBasicInfo={setBasicInfo}
+          setContactInfo={setContactInfo}
+          setEducationInfo={setEducationInfo}
+          setExpertiseInfo={setExpertiseInfo}
+          setEmploymentInfo={setEmploymentInfo}
+          setPortfolioInfo={setPortfolioInfo}
+        />
+      ) : null}
       <Box
         sx={{
           display: "flex",
@@ -135,46 +204,36 @@ export function CreateCV(props) {
             marginTop: "90px",
           }}
         >
-          <Routes>
-            <Route
-              path="/basic"
-              element={<BasicInformation setBasicInfo={setBasicInfo} />}
+          {basic}
+          {contact}
+          {education}
+          {expertise}
+          {portfolio}
+          {showCV === true ? (
+            <CVComponent
+              basicInfo={basicInfo}
+              contactInfo={contactInfo}
+              educationInfo={educationInfo}
+              expertiseInfo={expertiseInfo}
+              employmentInfo={employmentInfo}
+              portfolioInfo={portfolioInfo}
+              setShowCV={setShowCV}
+              setShowNavbar={setShowNavbar}
+              setBasic={setBasic}
+              setContact={setContact}
+              setEducation={setEducation}
+              setExpertise={setExpertise}
+              setPortfolio={setPortfolio}
+              basic={basic}
+              contact={contact}
+              education={education}
+              expertise={expertise}
+              portfolio={portfolio}
+              setShowBeforButton={setShowBeforButton}
+              setShowNextButton={setShowNextButton}
+              setBasicInfo={setBasicInfo}
             />
-            <Route
-              path="/contact"
-              element={<ContactInformation setContactInfo={setContactInfo} />}
-            />
-            <Route
-              path="/education"
-              element={<Education setEducationInfo={setEducationInfo} />}
-            />
-            <Route
-              path="/expertise"
-              element={
-                <Expertise
-                  setExpertiseInfo={setExpertiseInfo}
-                  setEmploymentInfo={setEmploymentInfo}
-                />
-              }
-            />
-            <Route
-              path="/portfolio"
-              element={<Portfolio setPortfolioInfo={setPortfolioInfo} />}
-            />{" "}
-            <Route
-              path="/cv"
-              element={
-                <CVComponent
-                  basicInfo={basicInfo}
-                  contactInfo={contactInfo}
-                  educationInfo={educationInfo}
-                  expertiseInfo={expertiseInfo}
-                  employmentInfo={employmentInfo}
-                  portfolioInfo={portfolioInfo}
-                />
-              }
-            />
-          </Routes>
+          ) : null}
         </Box>
       </Box>
     </>

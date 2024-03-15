@@ -82,7 +82,6 @@ export function BasicInformation({ setBasicInfo }) {
   const [day, setDay] = useState(null);
   const [month, setMonth] = useState(null);
   const [year, setYear] = useState(null);
-
   useEffect(() => {
     setBasicInfo({
       name: name,

@@ -1,7 +1,28 @@
-import { Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Typography, Button } from "@mui/material";
+import { BasicInformation } from "./BasicInformation";
+import { ContactInformation } from "./ContactInformation";
+import { Education } from "./Education";
+import { Expertise } from "./Expertise";
+import { Portfolio } from "./Portfolio";
 
-export function NavigationBar({ pathName }) {
+export function NavigationBar({
+  setBasic,
+  basic,
+  setContact,
+  contact,
+  setEducation,
+  education,
+  setExpertise,
+  expertise,
+  setPortfolio,
+  portfolio,
+  setBasicInfo,
+  setContactInfo,
+  setEducationInfo,
+  setExpertiseInfo,
+  setEmploymentInfo,
+  setPortfolioInfo,
+}) {
   return (
     <>
       {" "}
@@ -40,100 +61,102 @@ export function NavigationBar({ pathName }) {
           className="navigation-shadow"
         >
           <Typography
+            onClick={() => {
+              setBasic(<BasicInformation setBasicInfo={setBasicInfo} />);
+              setContact(null);
+              setEducation(null);
+              setExpertise(null);
+              setPortfolio(null);
+            }}
             variant="h6"
             sx={{
               fontWeight: "bold",
+              color: basic ? "#047857" : "black",
               "@media (max-width:860px)": { fontSize: "16px" },
               "@media (max-width:470px)": { fontSize: "12px" },
             }}
           >
-            <Link
-              className="link-hover"
-              to={"/basic"}
-              style={{
-                textDecoration: "none",
-                color: pathName === "/basic" ? "#047857" : "black",
-              }}
-            >
-              اطلاعات پایه
-            </Link>
+            اطلاعات پایه
           </Typography>
           <Typography
+            onClick={() => {
+              setBasic(null);
+              setContact(
+                <ContactInformation setContactInfo={setContactInfo} />
+              );
+              setEducation(null);
+              setExpertise(null);
+              setPortfolio(null);
+            }}
             variant="h6"
             sx={{
               fontWeight: "bold",
+              color: contact ? "#047857" : "black",
               "@media (max-width:860px)": { fontSize: "16px" },
               "@media (max-width:470px)": { fontSize: "12px" },
             }}
           >
-            <Link
-              className="link-hover"
-              to={"/contact"}
-              style={{
-                textDecoration: "none",
-                color: pathName === "/contact" ? "#047857" : "black",
-              }}
-            >
-              اطلاعت تماس{" "}
-            </Link>
+            اطلاعت تماس{" "}
           </Typography>
           <Typography
+            onClick={() => {
+              setBasic(null);
+              setContact(null);
+              setEducation(<Education setEducationInfo={setEducationInfo} />);
+              setExpertise(null);
+              setPortfolio(null);
+            }}
             variant="h6"
             sx={{
               fontWeight: "bold",
+              color: education ? "#047857" : "black",
               "@media (max-width:860px)": { fontSize: "16px" },
               "@media (max-width:470px)": { fontSize: "12px" },
             }}
           >
-            <Link
-              className="link-hover"
-              to={"/education"}
-              style={{
-                textDecoration: "none",
-                color: pathName === "/education" ? "#047857" : "black",
-              }}
-            >
-              {" "}
-              سوابق تحصیلی
-            </Link>
+            {" "}
+            سوابق تحصیلی
           </Typography>
           <Typography
+            onClick={() => {
+              setBasic(null);
+              setContact(null);
+              setEducation(null);
+              setExpertise(
+                <Expertise
+                  setExpertiseInfo={setExpertiseInfo}
+                  setEmploymentInfo={setEmploymentInfo}
+                />
+              );
+              setPortfolio(null);
+            }}
             variant="h6"
             sx={{
               fontWeight: "bold",
+              color: expertise ? "#047857" : "black",
               "@media (max-width:860px)": { fontSize: "16px" },
               "@media (max-width:470px)": { fontSize: "12px" },
             }}
           >
-            <Link
-              className="link-hover"
-              to={"/expertise"}
-              style={{
-                textDecoration: "none",
-                color: pathName === "/expertise" ? "#047857" : "black",
-              }}
-            >
-              تخصص ها
-            </Link>
+            تخصص ها
           </Typography>
           <Typography
+            onClick={() => {
+              setBasic(null);
+              setContact(null);
+              setEducation(null);
+              setExpertise(null);
+              setPortfolio(<Portfolio setPortfolioInfo={setPortfolioInfo} />);
+            }}
             variant="h6"
             sx={{
               fontWeight: "bold",
+              color: portfolio ? "#047857" : "black",
               "@media (max-width:860px)": { fontSize: "16px" },
               "@media (max-width:470px)": { fontSize: "12px" },
             }}
           >
-            <Link
-              className="link-hover"
-              to={"/portfolio"}
-              style={{
-                textDecoration: "none",
-                color: pathName === "/portfolio" ? "#047857" : "black",
-              }}
-            >
-              پروژه و نمونه کارها
-            </Link>
+            پروژه و نمونه کارها
           </Typography>
         </Box>
       </Box>

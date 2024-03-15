@@ -2,6 +2,7 @@ import { Box, Grid, Typography, Button, Avatar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import SvgIcon from "@mui/material/SvgIcon";
 import { SignalWifiStatusbarNull } from "@mui/icons-material";
+import { BasicInformation } from "./parts-Of-Create-CV/BasicInformation";
 function HomeIcon(props) {
   return (
     <SvgIcon {...props}>
@@ -10,20 +11,37 @@ function HomeIcon(props) {
   );
 }
 export const CVComponent = ({
+  setBasicInfo,
+  setShowCV,
+  setShowNavbar,
+  setBasic,
+  setContact,
+  setEducation,
+  setExpertise,
+  setPortfolio,
   basicInfo,
   contactInfo,
   educationInfo,
   expertiseInfo,
   employmentInfo,
   portfolioInfo,
+  setShowBeforButton,
+  setShowNextButton,
 }) => {
-  const navigate = useNavigate();
   return (
     <>
       <Button
         className="change-cv"
         onClick={() => {
-          navigate("/basic");
+          setShowCV(false);
+          setShowNavbar(true);
+          setShowBeforButton(true);
+          setShowNextButton(true);
+          setBasic(<BasicInformation setBasicInfo={setBasicInfo} />);
+          setContact(null);
+          setEducation(null);
+          setExpertise(null);
+          setPortfolio(null);
         }}
         sx={{
           borderRadius: "200px",
@@ -39,6 +57,7 @@ export const CVComponent = ({
       >
         ویرایش رزومه
       </Button>
+
       <Box
         className="container"
         sx={{ width: "100%", backgroundColor: "#F5F5F5", paddingTop: 5 }}
