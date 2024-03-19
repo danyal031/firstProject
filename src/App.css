@@ -3,6 +3,15 @@
   padding: 0px;
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: "koodak";
+  src: url("../public/fonts/koodak.url");
+}
+@font-face {
+  font-family: "nazanin";
+  src: url("../public/fonts/Fontjo.Com\ ورود\ به.url");
+}
 body {
   background-color: hsl(218, 11%, 65%);
 }
@@ -84,4 +93,22 @@ body {
   -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+}
+
+.download-cv {
+  background: rgb(252, 252, 252);
+  background: linear-gradient(
+    90deg,
+    rgba(252, 252, 252, 1) 0%,
+    rgba(20, 120, 4, 1) 46%
+  );
+}
+
+.download-cv:hover {
+  background: rgb(20, 120, 4);
+  background: linear-gradient(
+    90deg,
+    rgba(20, 120, 4, 1) 41%,
+    rgba(252, 252, 252, 1) 100%
+  );
 }

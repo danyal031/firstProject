@@ -6,16 +6,16 @@ import { Expertise } from "./Expertise";
 import { Portfolio } from "./Portfolio";
 
 export function NavigationBar({
-  setBasic,
-  basic,
-  setContact,
-  contact,
-  setEducation,
-  education,
-  setExpertise,
-  expertise,
-  setPortfolio,
-  portfolio,
+  setDisplayBasic,
+  displaybasic,
+  setDisplayContact,
+  displayContact,
+  setDisplayEducation,
+  displayEducation,
+  setDisplayExpertise,
+  displayExpertise,
+  setDisplayPortfolio,
+  displayPortfolio,
   setBasicInfo,
   setContactInfo,
   setEducationInfo,
@@ -62,16 +62,16 @@ export function NavigationBar({
         >
           <Typography
             onClick={() => {
-              setBasic(<BasicInformation setBasicInfo={setBasicInfo} />);
-              setContact(null);
-              setEducation(null);
-              setExpertise(null);
-              setPortfolio(null);
+              setDisplayBasic("flex");
+              setDisplayContact("none");
+              setDisplayEducation("none");
+              setDisplayExpertise("none");
+              setDisplayPortfolio("none");
             }}
             variant="h6"
             sx={{
               fontWeight: "bold",
-              color: basic ? "#047857" : "black",
+              color: displaybasic === "flex" ? "#047857" : "black",
               "@media (max-width:860px)": { fontSize: "16px" },
               "@media (max-width:470px)": { fontSize: "12px" },
             }}
@@ -80,18 +80,16 @@ export function NavigationBar({
           </Typography>
           <Typography
             onClick={() => {
-              setBasic(null);
-              setContact(
-                <ContactInformation setContactInfo={setContactInfo} />
-              );
-              setEducation(null);
-              setExpertise(null);
-              setPortfolio(null);
+              setDisplayBasic("none");
+              setDisplayContact("flex");
+              setDisplayEducation("none");
+              setDisplayExpertise("none");
+              setDisplayPortfolio("none");
             }}
             variant="h6"
             sx={{
               fontWeight: "bold",
-              color: contact ? "#047857" : "black",
+              color: displayContact === "flex" ? "#047857" : "black",
               "@media (max-width:860px)": { fontSize: "16px" },
               "@media (max-width:470px)": { fontSize: "12px" },
             }}
@@ -100,16 +98,16 @@ export function NavigationBar({
           </Typography>
           <Typography
             onClick={() => {
-              setBasic(null);
-              setContact(null);
-              setEducation(<Education setEducationInfo={setEducationInfo} />);
-              setExpertise(null);
-              setPortfolio(null);
+              setDisplayBasic("none");
+              setDisplayContact("none");
+              setDisplayEducation("flex");
+              setDisplayExpertise("none");
+              setDisplayPortfolio("none");
             }}
             variant="h6"
             sx={{
               fontWeight: "bold",
-              color: education ? "#047857" : "black",
+              color: displayEducation === "flex" ? "#047857" : "black",
               "@media (max-width:860px)": { fontSize: "16px" },
               "@media (max-width:470px)": { fontSize: "12px" },
             }}
@@ -119,21 +117,16 @@ export function NavigationBar({
           </Typography>
           <Typography
             onClick={() => {
-              setBasic(null);
-              setContact(null);
-              setEducation(null);
-              setExpertise(
-                <Expertise
-                  setExpertiseInfo={setExpertiseInfo}
-                  setEmploymentInfo={setEmploymentInfo}
-                />
-              );
-              setPortfolio(null);
+              setDisplayBasic("none");
+              setDisplayContact("none");
+              setDisplayEducation("none");
+              setDisplayExpertise("flex");
+              setDisplayPortfolio("none");
             }}
             variant="h6"
             sx={{
               fontWeight: "bold",
-              color: expertise ? "#047857" : "black",
+              color: displayExpertise === "flex" ? "#047857" : "black",
               "@media (max-width:860px)": { fontSize: "16px" },
               "@media (max-width:470px)": { fontSize: "12px" },
             }}
@@ -142,16 +135,16 @@ export function NavigationBar({
           </Typography>
           <Typography
             onClick={() => {
-              setBasic(null);
-              setContact(null);
-              setEducation(null);
-              setExpertise(null);
-              setPortfolio(<Portfolio setPortfolioInfo={setPortfolioInfo} />);
+              setDisplayBasic("none");
+              setDisplayContact("none");
+              setDisplayEducation("none");
+              setDisplayExpertise("none");
+              setDisplayPortfolio("flex");
             }}
             variant="h6"
             sx={{
               fontWeight: "bold",
-              color: portfolio ? "#047857" : "black",
+              color: displayPortfolio === "flex" ? "#047857" : "black",
               "@media (max-width:860px)": { fontSize: "16px" },
               "@media (max-width:470px)": { fontSize: "12px" },
             }}

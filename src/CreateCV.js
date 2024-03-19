@@ -18,13 +18,11 @@ export function CreateCV() {
   const [employmentInfo, setEmploymentInfo] = useState([]);
   const [portfolioInfo, setPortfolioInfo] = useState([]);
   // State for the different parts of a cv.
-  const [basic, setBasic] = useState(
-    <BasicInformation setBasicInfo={setBasicInfo} />
-  );
-  const [contact, setContact] = useState(null);
-  const [education, setEducation] = useState(null);
-  const [expertise, setExpertise] = useState(null);
-  const [portfolio, setPortfolio] = useState(null);
+  const [displaybasic, setDisplayBasic] = useState("flex");
+  const [displayContact, setDisplayContact] = useState("none");
+  const [displayEducation, setDisplayEducation] = useState("none");
+  const [displayExpertise, setDisplayExpertise] = useState("none");
+  const [displayPortfolio, setDisplayPortfolio] = useState("none");
   const [showNavbar, setShowNavbar] = useState(true);
   const [showCV, setShowCV] = useState(false);
   const [showNextButton, setShowNextButton] = useState(true);
@@ -33,40 +31,33 @@ export function CreateCV() {
   return (
     <>
       {showNextButton === true ? (
-        portfolio ? null : (
+        displayPortfolio === "flex" ? null : (
           <Button
             onClick={() => {
-              if (basic) {
-                setBasic(null);
-                setContact(
-                  <ContactInformation setContactInfo={setContactInfo} />
-                );
-                setEducation(null);
-                setExpertise(null);
-                setPortfolio(null);
-              } else if (contact) {
-                setBasic(null);
-                setContact(null);
-                setEducation(<Education setEducationInfo={setEducationInfo} />);
-                setExpertise(null);
-                setPortfolio(null);
-              } else if (education) {
-                setBasic(null);
-                setContact(null);
-                setEducation(null);
-                setExpertise(
-                  <Expertise
-                    setExpertiseInfo={setExpertiseInfo}
-                    setEmploymentInfo={setEmploymentInfo}
-                  />
-                );
-                setPortfolio(null);
-              } else if (expertise) {
-                setBasic(null);
-                setContact(null);
-                setEducation(null);
-                setExpertise(null);
-                setPortfolio(<Portfolio setPortfolioInfo={setPortfolioInfo} />);
+              if (displaybasic === "flex") {
+                setDisplayBasic("none");
+                setDisplayContact("flex");
+                setDisplayEducation("none");
+                setDisplayExpertise("none");
+                setDisplayPortfolio("none");
+              } else if (displayContact === "flex") {
+                setDisplayBasic("none");
+                setDisplayContact("none");
+                setDisplayEducation("flex");
+                setDisplayExpertise("none");
+                setDisplayPortfolio("none");
+              } else if (displayEducation === "flex") {
+                setDisplayBasic("none");
+                setDisplayContact("none");
+                setDisplayEducation("none");
+                setDisplayExpertise("flex");
+                setDisplayPortfolio("none");
+              } else if (displayExpertise === "flex") {
+                setDisplayBasic("none");
+                setDisplayContact("none");
+                setDisplayEducation("none");
+                setDisplayExpertise("none");
+                setDisplayPortfolio("flex");
               }
             }}
             className="next-befor"
@@ -87,40 +78,33 @@ export function CreateCV() {
         )
       ) : null}
       {showBeforButton === true ? (
-        basic ? null : (
+        displaybasic === "flex" ? null : (
           <Button
             onClick={() => {
-              if (portfolio) {
-                setBasic(null);
-                setContact(null);
-                setEducation(null);
-                setExpertise(
-                  <Expertise
-                    setExpertiseInfo={setExpertiseInfo}
-                    setEmploymentInfo={setEmploymentInfo}
-                  />
-                );
-                setPortfolio(null);
-              } else if (expertise) {
-                setBasic(null);
-                setContact(null);
-                setEducation(<Education setEducationInfo={setEducationInfo} />);
-                setExpertise(null);
-                setPortfolio(null);
-              } else if (education) {
-                setBasic(null);
-                setContact(
-                  <ContactInformation setContactInfo={setContactInfo} />
-                );
-                setEducation(null);
-                setExpertise(null);
-                setPortfolio(null);
-              } else if (contact) {
-                setBasic(<BasicInformation setBasicInfo={setBasicInfo} />);
-                setContact(null);
-                setEducation(null);
-                setExpertise(null);
-                setPortfolio(null);
+              if (displayPortfolio === "flex") {
+                setDisplayBasic("none");
+                setDisplayContact("none");
+                setDisplayEducation("none");
+                setDisplayExpertise("flex");
+                setDisplayPortfolio("none");
+              } else if (displayExpertise === "flex") {
+                setDisplayBasic("none");
+                setDisplayContact("none");
+                setDisplayEducation("flex");
+                setDisplayExpertise("none");
+                setDisplayPortfolio("none");
+              } else if (displayEducation === "flex") {
+                setDisplayBasic("none");
+                setDisplayContact("flex");
+                setDisplayEducation("none");
+                setDisplayExpertise("none");
+                setDisplayPortfolio("none");
+              } else if (displayContact === "flex") {
+                setDisplayBasic("flex");
+                setDisplayContact("none");
+                setDisplayEducation("none");
+                setDisplayExpertise("none");
+                setDisplayPortfolio("none");
               }
             }}
             className="next-befor"
@@ -140,18 +124,18 @@ export function CreateCV() {
           </Button>
         )
       ) : null}{" "}
-      {portfolio ? (
+      {displayPortfolio === "flex" ? (
         <Button
           onClick={() => {
             setShowCV(true);
             setShowNavbar(false);
             setShowBeforButton(false);
             setShowNextButton(false);
-            setBasic(null);
-            setContact(null);
-            setEducation(null);
-            setExpertise(null);
-            setPortfolio(null);
+            setDisplayBasic("none");
+            setDisplayContact("none");
+            setDisplayEducation("none");
+            setDisplayExpertise("none");
+            setDisplayPortfolio("none");
           }}
           className="get-cv"
           sx={{
@@ -171,16 +155,16 @@ export function CreateCV() {
       ) : null}
       {showNavbar === true ? (
         <NavigationBar
-          setBasic={setBasic}
-          setContact={setContact}
-          setEducation={setEducation}
-          setExpertise={setExpertise}
-          setPortfolio={setPortfolio}
-          basic={basic}
-          contact={contact}
-          education={education}
-          expertise={expertise}
-          portfolio={portfolio}
+          setDisplayBasic={setDisplayBasic}
+          setDisplayContact={setDisplayContact}
+          setDisplayEducation={setDisplayEducation}
+          setDisplayExpertise={setDisplayExpertise}
+          setDisplayPortfolio={setDisplayPortfolio}
+          displaybasic={displaybasic}
+          displayContact={displayContact}
+          displayEducation={displayEducation}
+          displayExpertise={displayExpertise}
+          displayPortfolio={displayPortfolio}
           setBasicInfo={setBasicInfo}
           setContactInfo={setContactInfo}
           setEducationInfo={setEducationInfo}
@@ -204,11 +188,25 @@ export function CreateCV() {
             marginTop: "90px",
           }}
         >
-          {basic}
-          {contact}
-          {education}
-          {expertise}
-          {portfolio}
+          <Box sx={{ display: displaybasic }}>
+            <BasicInformation setBasicInfo={setBasicInfo} />
+          </Box>
+          <Box sx={{ display: displayContact }}>
+            <ContactInformation setContactInfo={setContactInfo} />
+          </Box>
+          <Box sx={{ display: displayEducation }}>
+            <Education setEducationInfo={setEducationInfo} />
+          </Box>
+          <Box sx={{ display: displayExpertise }}>
+            <Expertise
+              setExpertiseInfo={setExpertiseInfo}
+              setEmploymentInfo={setEmploymentInfo}
+            />
+          </Box>
+          <Box sx={{ display: displayPortfolio }}>
+            <Portfolio setPortfolioInfo={setPortfolioInfo} />
+          </Box>
+
           {showCV === true ? (
             <CVComponent
               basicInfo={basicInfo}
@@ -219,16 +217,16 @@ export function CreateCV() {
               portfolioInfo={portfolioInfo}
               setShowCV={setShowCV}
               setShowNavbar={setShowNavbar}
-              setBasic={setBasic}
-              setContact={setContact}
-              setEducation={setEducation}
-              setExpertise={setExpertise}
-              setPortfolio={setPortfolio}
-              basic={basic}
-              contact={contact}
-              education={education}
-              expertise={expertise}
-              portfolio={portfolio}
+              setDisplayBasic={setDisplayBasic}
+              setDisplayContact={setDisplayContact}
+              setDisplayEducation={setDisplayEducation}
+              setDisplayExpertise={setDisplayExpertise}
+              setDisplayPortfolio={setDisplayPortfolio}
+              displaybasic={displaybasic}
+              displayContact={displayContact}
+              displayEducation={displayEducation}
+              displayExpertise={displayExpertise}
+              displayPortfolio={displayPortfolio}
               setShowBeforButton={setShowBeforButton}
               setShowNextButton={setShowNextButton}
               setBasicInfo={setBasicInfo}

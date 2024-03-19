@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import { DatePicker, LocalizationProvider, faIR } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import * as yup from "yup";
 export function BasicInformation({ setBasicInfo }) {
   const days = [
     { numberOfDay: "1", id: 1 },
@@ -106,6 +107,38 @@ export function BasicInformation({ setBasicInfo }) {
     year,
     setBasicInfo,
   ]);
+
+  const schema = yup.object().shape({
+    name: yup.string().required("پر کردن این فیلد الزامی است"),
+    profile: yup.string().required("پر کردن این فیلد الزامی است"),
+    day: yup
+      .number()
+      .positive()
+      .integer()
+      .required("پر کردن این فیلد الزامی است"),
+    month: yup.string().required("پر کردن این فیلد الزامی است"),
+    year: yup
+      .number()
+      .positive()
+      .integer()
+      .required("پر کردن این فیلد الزامی است"),
+    country: yup.string().required("پر کردن این فیلد الزامی است"),
+  });
+  schema
+    .validate({
+      name: name,
+      profile: profile,
+      day: day,
+      month: month,
+      year: year,
+      country: country,
+    })
+    .then((valid) => {
+      console.log(valid);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
   // handle reset country
   //چرا کار نمیکنه
